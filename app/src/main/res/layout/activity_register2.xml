@@ -17,7 +17,7 @@
         android:src="@drawable/dreamsonic" />
 
     <EditText
-        android:id="@+id/edittext_username"
+        android:id="@+id/edittext_rusername"
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
@@ -28,7 +28,7 @@
         android:textColorHighlight="@color/buttoncolor" />
 
     <EditText
-        android:id="@+id/edittext_password"
+        android:id="@+id/edittext_rpassword"
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -40,37 +40,31 @@
         android:shadowColor="#96B878D1"
         android:textColor="#000000"
         android:textColorHighlight="@color/buttoncolor" />
+    <EditText
+        android:id="@+id/edittext_confirmpassword"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#D1B58D"
+        android:fadingEdge="horizontal"
+        android:hint="@string/repeat_password"
+        android:paddingLeft="4dp"
+        android:password="true"
+        android:shadowColor="#96B878D1"
+        android:textColor="#000000"
+        android:textColorHighlight="@color/buttoncolor" />
+
+
+
 
     <Button
-        android:id="@+id/button_login"
+        android:id="@+id/button_register"
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:layout_marginTop="20dp"
         android:background="#B9BF87D5"
-        android:text="@string/login"/>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/linearLayout1"
-    android:orientation="horizontal">
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-        android:textColor="#000000"
-            android:text="@string/not_registered" />
+        android:text="@string/register1"/>
 
-    <TextView
-        android:id="@+id/textview_register"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:onClick="openRegisterActivity"
-        android:paddingLeft="10dp"
-        android:text="@string/register"
-        android:textColor="#000000"
-        android:textStyle="bold" />
-
-
-</LinearLayout>
 
 
 

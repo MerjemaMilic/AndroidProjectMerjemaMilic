@@ -6,5 +6,7 @@
     <color name="zuta">#E2DBB4</color>
     <color name="defaultcolor">#C8A97D</color>
     <color name="buttoncolor">#c495d6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#D1B58D</color>
 
 </resources>

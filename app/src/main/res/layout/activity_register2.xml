@@ -7,21 +7,20 @@
     android:paddingRight="16dp"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@drawable/log1">
+    android:background="@drawable/b2">
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="105dp"
+        android:layout_width="411dp"
+        android:layout_height="150dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/dreamsonic" />
+        android:src="@drawable/ds1" />
 
     <EditText
         android:id="@+id/edittext_rusername"
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:background="#D1B58D"
         android:hint="@string/username"
         android:paddingLeft="4dp"
         android:shadowColor="@color/buttoncolor"
@@ -32,7 +31,6 @@
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:background="#D1B58D"
         android:fadingEdge="horizontal"
         android:hint="@string/password"
         android:paddingLeft="4dp"
@@ -45,7 +43,6 @@
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:background="#D1B58D"
         android:fadingEdge="horizontal"
         android:hint="@string/repeat_password"
         android:paddingLeft="4dp"
@@ -55,17 +52,14 @@
         android:textColorHighlight="@color/buttoncolor" />
 
 
-
-
     <Button
         android:id="@+id/button_register"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
+        android:layout_width="166dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="#B9BF87D5"
-        android:text="@string/register1"/>
-
-
+        android:background="#D1B58D"
+        android:text="create account"
+        android:textColor="#FFFF" />
 
 
 </LinearLayout>

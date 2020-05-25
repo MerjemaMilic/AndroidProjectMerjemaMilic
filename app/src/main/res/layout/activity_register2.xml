@@ -16,6 +16,18 @@
         android:layout_marginTop="50dp"
         android:src="@drawable/ds1" />
 
+
+    <EditText
+        android:id="@+id/edittext_rfullname"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:hint="Full Name"
+        android:paddingLeft="4dp"
+        android:shadowColor="@color/buttoncolor"
+        android:singleLine="true"
+        android:textColorHighlight="@color/buttoncolor" />
+
     <EditText
         android:id="@+id/edittext_remail"
         android:layout_width="220dp"
@@ -24,6 +36,7 @@
         android:hint="E-mail"
         android:paddingLeft="4dp"
         android:shadowColor="@color/buttoncolor"
+        android:singleLine="true"
         android:textColorHighlight="@color/buttoncolor" />
 
     <EditText
@@ -38,7 +51,6 @@
         android:shadowColor="#96B878D1"
         android:textColor="#000000"
         android:textColorHighlight="@color/buttoncolor" />
-
 
     <Button
         android:id="@+id/button_register"

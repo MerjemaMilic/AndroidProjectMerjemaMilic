@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         Log.i("TAG", "onSuccess: user profile is created for" + userID);
                                     }
                                 });
-                                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                                startActivity(new Intent(RegisterActivity.this, AddDreamActivity.class));
                             }
 
                         }

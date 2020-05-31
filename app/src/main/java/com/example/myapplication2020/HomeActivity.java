@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
-    Button logout, dreammeanings;
+    Button logout, dreammeanings, addnew, show;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -34,6 +34,23 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, AddDreamActivity.class);
                 startActivity(intent);
+            }
+        });
+        addnew = findViewById(R.id.adddreambuttonnew);
+        addnew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, NewDream.class);
+                startActivity(intent);
+            }
+        });
+
+        show = findViewById(R.id._home);
+        show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeActivity.this, ListActivity.class);
+                startActivity(i);
             }
         });
     }

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class AddDreamActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    Adapter adapter;
+    CustomAdapter adapter;
     FloatingActionButton buttonAdd;
     List<Dream> dreamList;
     @Override
@@ -29,7 +29,7 @@ public class AddDreamActivity extends AppCompatActivity {
         String[] titles = getResources().getStringArray(R.array.dreams_titles);
         String[] contents = getResources().getStringArray(R.array.dreamscontent);
 
-        adapter = new Adapter(this, dreamList);
+        adapter = new CustomAdapter(this, dreamList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 

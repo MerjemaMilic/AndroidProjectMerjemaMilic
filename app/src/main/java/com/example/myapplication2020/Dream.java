@@ -1,12 +1,22 @@
 package com.example.myapplication2020;
 
 public class Dream {
-    private String title;
-    private String description;
+    public String title;
+    public String description;
+    public String id;
 
-    public Dream() {
-
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /* public Dream() {
+
+    } */
+
 
     public String getTitle() {
         return title;
@@ -28,4 +38,10 @@ public class Dream {
         this.title = title;
         this.description = description;
     }
+
+    /*public Dream(String title, String description, String id) {
+        this.title = title;
+        this.description = description;
+        this.id = id;
+    } */
 }

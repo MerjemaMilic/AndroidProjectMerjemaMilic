@@ -15,21 +15,22 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddDreamActivity extends AppCompatActivity {
+public class DreamMeanings extends AppCompatActivity {
     RecyclerView recyclerView;
     CustomAdapter adapter;
+    ListActivity listActivity;
     FloatingActionButton buttonAdd;
     List<Dream> dreamList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_dream);
+        setContentView(R.layout.dream_meanings);
         recyclerView = findViewById(R.id.dreamsList);
          dreamList = new ArrayList<>();
         String[] titles = getResources().getStringArray(R.array.dreams_titles);
         String[] contents = getResources().getStringArray(R.array.dreamscontent);
 
-        adapter = new CustomAdapter(this, dreamList);
+        adapter = new CustomAdapter(listActivity, dreamList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 

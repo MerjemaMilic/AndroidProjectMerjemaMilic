@@ -1,6 +1,9 @@
 package com.example.myapplication2020;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +22,8 @@ public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
    public List<Dream> dreamsList;
     Context context;
 
-    public CustomAdapter(Context context, List<Dream> dreamsList) {
-        this.context = context;
+    public CustomAdapter(ListActivity listActivity, List<Dream> dreamsList) {
+        this.listActivity = listActivity;
         this.dreamsList = dreamsList;
     }
 
@@ -50,8 +53,31 @@ public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
             }
 
             @Override
-            public void onItemLongClick(View view, int position) {
+            public void onItemLongClick(View view, final int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(listActivity);
+                String[] options = {"Update", "Delete"};
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(which == 0) {
+                            String id = dreamsList.get(position).getId();
+                            Log.d("tag","id" + id);
+                            String title = dreamsList.get(position).getTitle();
+                            Log.d("TITLE","title" + title);
+                            String description = dreamsList.get(position).getDescription();
 
+                            Intent intent = new Intent(listActivity,NewDream.class);
+                            intent.putExtra("updateId",id);
+                            intent.putExtra("updateT",title);
+                            intent.putExtra("updateD",description);
+                            listActivity.startActivity(intent);
+
+                        }
+                        if(which == 1) {
+                            listActivity.deleteData(position);
+                        }
+                    }
+                }).create().show();
             }
         });
 

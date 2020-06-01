@@ -16,12 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardElevation="8dp"
-        app:cardCornerRadius="6dp">
+        app:cardCornerRadius="6dp"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp"
+            android:background="#A9E1C9E3"
             >
 
             <ImageView

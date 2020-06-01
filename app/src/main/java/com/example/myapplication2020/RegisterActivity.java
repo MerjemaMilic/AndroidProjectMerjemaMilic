@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore fStore;
     String userID;
-
+    String fFullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String femail = email.getText().toString();
                 String fpassword = password.getText().toString();
-                final String fFullName = fullName.getText().toString();
+               fFullName = fullName.getText().toString();
                 if(femail.isEmpty()) {
                     email.setError("Please enter username");
                     email.requestFocus();
@@ -58,7 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Fields are emplty", Toast.LENGTH_SHORT).show();
                 }
                 else if(!(femail.isEmpty() && fpassword.isEmpty())) {
-                    mFirebaseAuth.createUserWithEmailAndPassword(femail,fpassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                    mFirebaseAuth.createUserWithEmailAndPassword(femail,fpassword)
+
+                            .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
@@ -70,12 +74,18 @@ public class RegisterActivity extends AppCompatActivity {
                                 Map<String,Object> user = new HashMap<>();
                                 user.put("fName",fFullName);
                                 user.put("email",femail);
+
                                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.i("TAG", "onSuccess: user profile is created for" + userID);
+                                        Log.i("FULLNAME REGISTER" ,"register full name" + mFirebaseAuth.getCurrentUser().getEmail());
+
                                     }
                                 });
+
+
+
                                 startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                             }
 

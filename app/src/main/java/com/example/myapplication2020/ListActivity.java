@@ -78,11 +78,12 @@ public class ListActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        dreamList.clear();
                         pd.dismiss();
                         for(DocumentSnapshot doc: task.getResult()) {
                                 Log.d("tag", doc.getId() + " => " + doc.getData());
                                 task.getResult();
-                               Dream dream = new Dream(doc.getString("title"), doc.getString("description"));
+                               Dream dream = new Dream(doc.getString("title"), doc.getString("description"),doc.getId());
                             Log.d("tag", "title" + dream.getTitle());
                             dreamList.add(dream);
 
@@ -99,6 +100,24 @@ public class ListActivity extends AppCompatActivity {
                 pd.dismiss();
                 Toast.makeText(ListActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
+            }
+        });
+    }
+
+    public void deleteData(int index) {
+        pd.setTitle("Deleting data");
+        pd.show();
+
+        db.collection("Dreams").document(dreamList.get(index).getId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(ListActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                showData();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
             }
         });
     }

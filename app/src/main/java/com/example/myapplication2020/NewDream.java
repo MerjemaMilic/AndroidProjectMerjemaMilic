@@ -36,6 +36,8 @@ public class NewDream extends AppCompatActivity {
     private RecyclerView mrecyclerView;
    public List<Dream> dreamList;
     FirebaseFirestore db;
+   public String id;
+  String updateID,updateTitle,updateDescription;
 
 
 
@@ -47,6 +49,20 @@ public class NewDream extends AppCompatActivity {
         saveDream = findViewById(R.id.save_dream_button);
         newTitle = findViewById(R.id.new_dream_title);
         newDescription = findViewById(R.id.new_dream_description);
+
+        final Bundle bundle = getIntent().getExtras();
+        if(bundle != null) {
+        saveDream.setText("Update");
+        updateID = bundle.getString("updateId");
+        updateTitle = bundle.getString("updateT");
+        updateDescription = bundle.getString("updateD");
+        newTitle.setText(updateTitle);
+        newDescription.setText(updateDescription);
+        }
+        else{
+          saveDream.setText("Save");
+        }
+
         db = FirebaseFirestore.getInstance();
 
 
@@ -69,13 +85,26 @@ public class NewDream extends AppCompatActivity {
         saveDream.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle1 = getIntent().getExtras();
+                if(bundle1 !=null) {
+                    //update
+                    String id = updateID;
+                    String title = newTitle.getText().toString().trim();
+                    String desc = newDescription.getText().toString().trim();
+                    updateData(id,title,desc);
+                }
+                else{
+                    //add new
+                    String title = newTitle.getText().toString().trim();
+                    String desc = newDescription.getText().toString().trim();
+                    // Dream mLog = new Dream("","");
+                    //mLog.setTitle(title);
+                    //mLog.setDescription(desc);
+                    uploadData(title,desc);
+                }
 
-              String title = newTitle.getText().toString().trim();
-              String desc = newDescription.getText().toString().trim();
-               // Dream mLog = new Dream("","");
-               //mLog.setTitle(title);
-               //mLog.setDescription(desc);
-               uploadData(title,desc);
+
+
             }
         });
 
@@ -101,8 +130,7 @@ public class NewDream extends AppCompatActivity {
             }
         });
         */
-
-        String id = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
          Map<String,Object> doc  = new HashMap<>();
         doc.put("id",id);
         doc.put("title",title);
@@ -125,6 +153,23 @@ public class NewDream extends AppCompatActivity {
                 });
 
 
+    }
+
+    private void updateData(String id1,String title1, String description1) {
+        db.collection("Dreams")
+                .document(id1)
+                .update("title",title1, "description",description1).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(NewDream.this,"Updated successfully",Toast.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(NewDream.this,"Update failed",Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
 

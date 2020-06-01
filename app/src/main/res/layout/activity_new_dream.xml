@@ -11,13 +11,12 @@
 
     <Button
         android:id="@+id/save_dream_button"
-        style="@android:style/Widget.Material.Light.Button.Inset"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="124dp"
         android:layout_marginEnd="32dp"
-
-        android:background="@color/yellow"
+        android:background="@color/defaultcolor"
         android:text="SAVE"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,14 +28,13 @@
 
     <Button
         android:id="@+id/show_list_newdream"
-        style="@android:style/Widget.Material.Light.Button.Inset"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="124dp"
-
-        android:background="@color/yellow"
-        android:text="show list"
+        android:background="@color/defaultcolor"
+        android:text="SHOW LIST"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/save_dream_button"
@@ -53,8 +51,10 @@
         android:layout_marginTop="208dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:fontFamily="sans-serif"
         android:hint="Add dream title"
         android:inputType="textPersonName"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,8 +67,10 @@
         android:layout_marginTop="9dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:fontFamily="sans-serif"
         android:hint="Add dream description"
         android:inputType="textPersonName"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_dream_title" />
@@ -78,13 +80,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="cursive"
         android:text="Add new dream"
-        android:textColor="@color/yellow"
-        android:textSize="40sp"
+        android:textColor="@color/defaultcolor"
+        android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

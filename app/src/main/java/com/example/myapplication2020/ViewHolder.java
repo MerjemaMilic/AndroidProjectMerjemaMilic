@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
-   public TextView mTitle, mDescription;
+   public TextView mTitle, mDescription,mId;
     View mView;
 
 

@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
+    tools:context=".GuestActivity"
     android:background="@drawable/b2">
 
+
     <Button
-        android:id="@+id/logout_button"
+        android:id="@+id/ghome"
         android:layout_width="233dp"
         android:layout_height="60dp"
         android:layout_margin="16dp"
@@ -16,30 +17,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="#D1B58D"
-        android:text="LOG OUT"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_home"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/_home"
-        android:layout_width="233dp"
-        android:layout_height="60dp"
-        android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="#D1B58D"
         android:text="show list of dreams"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adddreambuttonnew" />
+        app:layout_constraintTop_toBottomOf="@+id/gadddreambuttonnew" />
 
     <Button
-        android:id="@+id/adddreambuttonnew"
+        android:id="@+id/gadddreambuttonnew"
         android:layout_width="233dp"
         android:layout_height="60dp"
         android:layout_margin="16dp"
@@ -51,39 +36,24 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dream_meanings" />
-
+        app:layout_constraintTop_toBottomOf="@+id/gdream_meanings" />
 
     <Button
-        android:id="@+id/my_profile"
+        android:id="@+id/gdream_meanings"
         android:layout_width="233dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="248dp"
-        android:layout_marginEnd="16dp"
-        android:background="#D1B58D"
-        android:text="My profile"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/dream_meanings"
-        android:layout_width="233dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="332dp"
         android:layout_marginEnd="16dp"
         android:background="#D1B58D"
         android:text="dream meanings"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_profile" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/gimageView3"
         android:layout_width="402dp"
         android:layout_height="166dp"
         android:layout_marginTop="72dp"
@@ -92,6 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ds1" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

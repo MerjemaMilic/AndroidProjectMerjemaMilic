@@ -17,13 +17,15 @@ TextView skip;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         login_btn = (Button) findViewById(R.id.login_btn);
         register_btn = (Button) findViewById(R.id.register_btn);
         skip = findViewById(R.id.skip);
+
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent rintent = new Intent(v.getContext(), AddDreamActivity.class);
+                Intent rintent = new Intent(v.getContext(), GuestActivity.class);
                 v.getContext().startActivity(rintent);
             }
         });

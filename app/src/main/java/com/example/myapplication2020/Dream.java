@@ -39,9 +39,9 @@ public class Dream {
         this.description = description;
     }
 
-    /*public Dream(String title, String description, String id) {
+    public Dream(String title, String description, String id) {
         this.title = title;
         this.description = description;
         this.id = id;
-    } */
+    }
 }

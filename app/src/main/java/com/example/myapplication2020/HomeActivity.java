@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
-    Button logout, dreammeanings, addnew, show;
+    Button logout, dreammeanings, addnew, show, myProfile;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -19,7 +19,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         logout = findViewById(R.id.logout_button);
+        dreammeanings = findViewById(R.id.dream_meanings);
+        addnew = findViewById(R.id.adddreambuttonnew);
+        show = findViewById(R.id._home);
+        myProfile = findViewById(R.id.my_profile);
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,15 +34,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        dreammeanings = findViewById(R.id.dream_meanings);
         dreammeanings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, AddDreamActivity.class);
+                Intent intent = new Intent(HomeActivity.this, DreamMeanings.class);
                 startActivity(intent);
             }
         });
-        addnew = findViewById(R.id.adddreambuttonnew);
         addnew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,11 +49,18 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        show = findViewById(R.id._home);
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeActivity.this, ListActivity.class);
+                startActivity(i);
+            }
+        });
+
+        myProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeActivity.this, MyProfile.class);
                 startActivity(i);
             }
         });

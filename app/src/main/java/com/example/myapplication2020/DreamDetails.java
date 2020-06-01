@@ -36,9 +36,9 @@ public class DreamDetails extends AppCompatActivity {
         final String title = i.getStringExtra("titleOfDream");
         final String content = i.getStringExtra("contentofDream");
         final Bundle bundle = getIntent().getExtras();
+
         titleDream.setText(title);
         dreamContent.setText(content);
-         dreamContent.setMovementMethod(new ScrollingMovementMethod());
 
 
 

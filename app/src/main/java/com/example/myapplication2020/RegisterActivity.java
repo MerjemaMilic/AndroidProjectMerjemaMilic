@@ -26,7 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
     Button register;
-    EditText email,password,fullName;
+    EditText email, password, fullName;
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore fStore;
     String userID;
@@ -36,63 +36,61 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register2);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
+
         register = findViewById(R.id.button_register);
         email = findViewById(R.id.edittext_remail);
         password = findViewById(R.id.edittext_rpassword);
         fullName = findViewById(R.id.edittext_rfullname);
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String femail = email.getText().toString();
                 String fpassword = password.getText().toString();
-               fFullName = fullName.getText().toString();
-                if(femail.isEmpty()) {
+                fFullName = fullName.getText().toString();
+                if (femail.isEmpty()) {
                     email.setError("Please enter username");
                     email.requestFocus();
-                }
-                else if(fpassword.isEmpty()) {
+                } else if (fpassword.isEmpty()) {
                     password.setError("Please enter password");
                     password.requestFocus();
-                }
-                else if(femail.isEmpty() && fpassword.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Fields are emplty", Toast.LENGTH_SHORT).show();
-                }
-                else if(!(femail.isEmpty() && fpassword.isEmpty())) {
-                    mFirebaseAuth.createUserWithEmailAndPassword(femail,fpassword)
+                } else if (femail.isEmpty() && fpassword.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Fields are empty", Toast.LENGTH_SHORT).show();
+                } else if (!(femail.isEmpty() && fpassword.isEmpty())) {
+                    mFirebaseAuth.createUserWithEmailAndPassword(femail, fpassword)
 
                             .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Sign in unsuccessful, Please try again", Toast.LENGTH_SHORT).show();
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(RegisterActivity.this, "Sign in unsuccessful, Please try again", Toast.LENGTH_SHORT).show();
 
-                            } else {
-                                userID = mFirebaseAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("users").document(userID);
-                                Map<String,Object> user = new HashMap<>();
-                                user.put("fName",fFullName);
-                                user.put("email",femail);
+                                    } else {
+                                        userID = mFirebaseAuth.getCurrentUser().getUid();
+                                        DocumentReference documentReference = fStore.collection("users").document(userID);
+                                        Map<String, Object> user = new HashMap<>();
+                                        user.put("fName", fFullName);
+                                        user.put("email", femail);
 
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.i("TAG", "onSuccess: user profile is created for" + userID);
-                                        Log.i("FULLNAME REGISTER" ,"register full name" + mFirebaseAuth.getCurrentUser().getEmail());
+                                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.i("TAG", "onSuccess: user profile is created for" + userID);
+                                                Log.i("FULLNAME REGISTER", "register full name" + mFirebaseAuth.getCurrentUser().getEmail());
 
+                                            }
+                                        });
+
+
+                                        startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                                     }
-                                });
 
-
-
-                                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
-                            }
-
-                        }
-                    });
-                }
-                else{
+                                }
+                            });
+                } else {
                     Toast.makeText(RegisterActivity.this, "Error occured!", Toast.LENGTH_SHORT).show();
 
                 }

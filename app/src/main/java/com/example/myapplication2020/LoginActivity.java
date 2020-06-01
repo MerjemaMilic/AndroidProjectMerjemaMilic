@@ -26,16 +26,18 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        loginemail = (EditText) findViewById(R.id.edittext_username);
-        loginpassword = (EditText) findViewById(R.id.edittext_password);
-        mButtonLogin = (Button) findViewById(R.id.button_login);
-        mTextViewRegister = (TextView) findViewById(R.id.textview_register);
+        loginemail = findViewById(R.id.edittext_username);
+        loginpassword = findViewById(R.id.edittext_password);
+        mButtonLogin = findViewById(R.id.button_login);
+        mTextViewRegister = findViewById(R.id.textview_register);
+
+
         mTextViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,12 +52,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-                if( mFirebaseUser != null) {
+                if (mFirebaseUser != null) {
                     Toast.makeText(LoginActivity.this, "You are logged in", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this,HomeActivity.class);
+                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(i);
-                }
-                else{
+                } else {
                     Toast.makeText(LoginActivity.this, "Please login", Toast.LENGTH_SHORT).show();
 
                 }
@@ -63,48 +64,41 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-    mButtonLogin.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String femail = loginemail.getText().toString();
-            String fpassword = loginpassword.getText().toString();
-            if(femail.isEmpty()) {
-                loginemail.setError("Please enter username");
-                loginemail.requestFocus();
-            }
-            else if(fpassword.isEmpty()) {
-                loginpassword.setError("Please enter password");
-                loginpassword.requestFocus();
-            }
-            else if(femail.isEmpty() && fpassword.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "Fields are emplty", Toast.LENGTH_SHORT).show();
-            }
-            else if(!(femail.isEmpty() && fpassword.isEmpty())) {
-                mFirebaseAuth.signInWithEmailAndPassword(femail, fpassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Login Error, please login again", Toast.LENGTH_SHORT).show();
+        mButtonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String femail = loginemail.getText().toString();
+                String fpassword = loginpassword.getText().toString();
+                if (femail.isEmpty()) {
+                    loginemail.setError("Please enter username");
+                    loginemail.requestFocus();
+                } else if (fpassword.isEmpty()) {
+                    loginpassword.setError("Please enter password");
+                    loginpassword.requestFocus();
+                } else if (femail.isEmpty() && fpassword.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Fields are emplty", Toast.LENGTH_SHORT).show();
+                } else if (!(femail.isEmpty() && fpassword.isEmpty())) {
+                    mFirebaseAuth.signInWithEmailAndPassword(femail, fpassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Login Error, please login again", Toast.LENGTH_SHORT).show();
 
-                        } else {
-                            Intent intToHome = new Intent(LoginActivity.this, DreamMeanings.class);
-                            startActivity(intToHome);
+                            } else {
+                                Intent intToHome = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intToHome);
+                            }
                         }
-                    }
 
 
-                });
+                    });
+                } else {
+                    Toast.makeText(LoginActivity.this, "Error occured!", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
-
-            else{
-                Toast.makeText(LoginActivity.this, "Error occured!", Toast.LENGTH_SHORT).show();
-
-            }
-
-        }
-    });
-
-
+        });
 
 
     }
@@ -120,5 +114,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
+
 
 }

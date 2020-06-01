@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -27,13 +28,13 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
-    List<Dream> dreamList = new ArrayList<>();
     RecyclerView.LayoutManager layoutManager;
+    CustomAdapter adapter;
 
     FloatingActionButton mAddBtn;
+    List<Dream> dreamList = new ArrayList<>();
 
     FirebaseFirestore db;
-    CustomAdapter adapter;
 
     ProgressDialog pd;
 
@@ -52,9 +53,7 @@ public class ListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         pd = new ProgressDialog(this);
-        // show data in recyclerview
         showData();
-
 
 
         mAddBtn.setOnClickListener(new View.OnClickListener() {
@@ -65,33 +64,29 @@ public class ListActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     private void showData() {
-        // progress dialog setting
         pd.setTitle("Loading data...");
         pd.show();
 
-        db.collection("Dreams")
+        db.collection("Dreams").orderBy("title", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         dreamList.clear();
                         pd.dismiss();
-                        for(DocumentSnapshot doc: task.getResult()) {
-                                Log.d("tag", doc.getId() + " => " + doc.getData());
-                                task.getResult();
-                               Dream dream = new Dream(doc.getString("title"), doc.getString("description"),doc.getId());
+                        for (DocumentSnapshot doc : task.getResult()) {
+                            Log.d("tag", doc.getId() + " => " + doc.getData());
+                            task.getResult();
+                            Dream dream = new Dream(doc.getString("title"), doc.getString("description"), doc.getId());
                             Log.d("tag", "title" + dream.getTitle());
                             dreamList.add(dream);
-
-
                         }
-                       adapter = new CustomAdapter(ListActivity.this,dreamList);
-                        mRecyclerView.setAdapter(adapter);
 
+                        adapter = new CustomAdapter(ListActivity.this, dreamList);
+                        mRecyclerView.setAdapter(adapter);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

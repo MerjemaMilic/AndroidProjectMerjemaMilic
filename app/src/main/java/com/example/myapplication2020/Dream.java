@@ -13,10 +13,6 @@ public class Dream {
         this.id = id;
     }
 
-    /* public Dream() {
-
-    } */
-
 
     public String getTitle() {
         return title;
